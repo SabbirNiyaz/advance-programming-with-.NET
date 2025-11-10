@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<h2 class="text-primary text-center mb-4">Registration Form</h2>
+
+<form method="post" class="needs-validation">
+    <!-- Name -->
+    <div class="mb-3">
+        <input type="text" name="Name" value="@Model.Name" placeholder="Name" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("Name")</span>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+        <input type="email" name="Email" value="@Model.Email" placeholder="Email" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("Email")</span>
+    </div>
+
+    <!-- Phone -->
+    <div class="mb-3">
+        <input type="tel" name="Phone" value="@Model.Phone" placeholder="Phone" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("Phone")</span>
+    </div>
+
+    <!-- Password -->
+    <div class="mb-3">
+        <input type="password" name="Password" value="@Model.Password" placeholder="Password" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("Password")</span>
+    </div>
+
+    <!-- Postal Code -->
+    <div class="mb-3">
+        <input type="text" name="PostalCode" value="@Model.PostalCode" placeholder="Postal Code" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("PostalCode")</span>
+    </div>
+
+    <div class="text-center">
+        <input type="submit" value="Register" class="btn btn-primary px-4" />
+    </div>
+</form>
