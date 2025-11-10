@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "RegistationForm";
+}
+
+@{
+    bool CheckGender(string gen)
+    {
+        if (Model.Gender != null && Model.Gender == gen)
+        {
+            return true;
+        }
+        return false;
+    }
+}
+
+@{
+    bool CheckProfession(string prof)
+    {
+        if (Model.Profession != null && Model.Profession == prof)
+        {
+            return true;
+        }
+        return false;
+    }
+}
+
+@{
+    bool CheckHobbies(string Hobby)
+    {
+        if (Model.Hobbies != null)
+        {
+            foreach (var item in Model.Hobbies)
+            {
+                if (item == Hobby) return true;
+
+            }
+        }
+        return false;
+    }
+}
+
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+
+    <div class="container mt-4 p-4 border rounded shadow-sm bg-light" style="max-width: 600px;">
+        @*<div class="text-danger mb-3">@Html.ValidationSummary()</div>*@
+
+        @if (TempData["Msg"] != null)
+        {
+            <div class="alert alert-success text-center fw-bold mt-3" role="alert">
+                @TempData["Msg"]
+            </div>
+        }
+
+        <h2 class="text-primary text-center mb-4">Registation Form</h2>
+
+        <form method="post" class="needs-validation">
+            <div class="mb-3">
+                <input type="text" name="Id" value="@Model.Id" placeholder="Id" class="form-control" />
+                <span class="text-danger">@Html.ValidationMessage("Id")</span>
+            </div>
+
+            <div class="mb-3">
+                <input type="email" name="Email" value="@Model.Email" placeholder="Email" class="form-control" />
+                <span class="text-danger">@Html.ValidationMessage("Email")</span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Gender:</label><br />
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Gender" value="Male" checked="@CheckGender("Male")" />
+                    <label class="form-check-label">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Gender" value="Female" checked="@CheckGender("Female")" />
+                    <label class="form-check-label">Female</label>
+                </div>
+                <br />
+                <span class="text-danger">@Html.ValidationMessage("Gender")</span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Profession:</label>
+                <select name="Profession" class="form-select">
+                    <option disabled selected>--Select--</option>
+                    <option selected="@CheckProfession("Student")">Student</option>
+                    <option selected="@CheckProfession("Business")">Business</option>
+                    <option selected="@CheckProfession("Service")">Service</option>
+                </select>
+                <span class="text-danger">@Html.ValidationMessage("Profession")</span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Hobbies:</label><br />
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="Hobbies[]" checked="@CheckHobbies("Sports")" value="Sports" />
+                    <label class="form-check-label">Sports</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="Hobbies[]" checked="@CheckHobbies("Gamming")" value="Gamming" />
+                    <label class="form-check-label">Gamming</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="Hobbies[]" checked="@CheckHobbies("Travelling")" value="Travelling" />
+                    <label class="form-check-label">Travelling</label>
+                </div>
+                <br />
+                <span class="text-danger">@Html.ValidationMessage("Hobbies")</span>
+            </div>
+
+            <div class="text-center">
+                <input type="submit" value="Registation" class="btn btn-primary px-4" />
+            </div>
+        </form>
+    </div>
+
+</div>
